@@ -32,11 +32,9 @@ public class MatrixCsigaVonal {
     
     static int[][] matrixInit(int sorok, int oszlopok){
         int[][] matrix = new int[sorok][oszlopok];
-        int szam = 0;
         for (int i = 0; i < sorok; i++) {
             for (int j = 0; j < oszlopok; j++) {
-                matrix[i][j] = szam;
-                szam++;
+                matrix[i][j] = 0;
             }
         }
         
@@ -46,13 +44,6 @@ public class MatrixCsigaVonal {
     
     public static void main(String[] args) {
         
-        int[][] test = {
-            {1,2,3,4,5},
-            {3,4,5,6,7},
-            {0,4,5,6,7}
-        };
-        
-        tombKiir(test);
         
         int[][] matrix = matrixInit(5, 5);
         tombKiir(matrix);
