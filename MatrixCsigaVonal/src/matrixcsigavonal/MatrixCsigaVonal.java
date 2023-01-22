@@ -13,8 +13,49 @@ public class MatrixCsigaVonal {
     /**
      * @param args the command line arguments
      */
+    
+    
+    static void tombKiir(int[] tomb){
+        tombKiir(tomb, tomb.length);
+    }//tombKiir
+    static void tombKiir(int[][] tomb){
+        for (int i = 0; i < tomb.length; i++) {
+           tombKiir(tomb[i]);
+        }
+    }//tombKiir
+    static void tombKiir(int[] tomb, int elem){
+        for (int i = 0; i < elem; i++) { System.out.print(tomb[i]+"; "); }
+        System.out.println("");
+    }//tombKiir
+    
+    
+    
+    static int[][] matrixInit(int sorok, int oszlopok){
+        int[][] matrix = new int[sorok][oszlopok];
+        int szam = 0;
+        for (int i = 0; i < sorok; i++) {
+            for (int j = 0; j < oszlopok; j++) {
+                matrix[i][j] = szam;
+                szam++;
+            }
+        }
+        
+        return matrix;
+        
+    }//matrixInit
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        int[][] test = {
+            {1,2,3,4,5},
+            {3,4,5,6,7},
+            {0,4,5,6,7}
+        };
+        
+        tombKiir(test);
+        
+        int[][] matrix = matrixInit(5, 5);
+        tombKiir(matrix);
     }
     
 }
