@@ -25,7 +25,10 @@ public class MatrixCsigaVonal {
 
     static void tombKiir(int[] tomb, int elem) {
         for (int i = 0; i < elem; i++) {
-            System.out.print(tomb[i] + "; ");
+            if(tomb[i]<10 && tomb[i]>-1)
+                System.out.print("0"+tomb[i] + "; ");
+            else
+                System.out.print(tomb[i] + "; ");
         }
         System.out.println("");
     }//tombKiir
@@ -40,7 +43,7 @@ public class MatrixCsigaVonal {
         return matrix;
     }//matrixInit
 
-    static void matrixBejar(int[][] matrix) {
+    /*static void matrixBejar(int[][] matrix) {
         int szam = 0, sszam = 0, oszam = 0;
 
         do{
@@ -68,10 +71,10 @@ public class MatrixCsigaVonal {
                 sszam = sor;
             }
             oszam--;
-
+            System.out.println(sszam+" és "+oszam);//VALAHOL ITT VAN A HIBA
+            tombKiir(matrix);
             //feltöltés jobbról balra
             for (int oszlop = oszam; oszlop > -1; oszlop--) {
-                System.out.println(sszam+" és "+oszam);//VALAHOL ITT VAN A HIBA
                 if(matrix[sszam][oszlop]!=-1){
                     oszam=oszlop;
                     break;
@@ -85,7 +88,7 @@ public class MatrixCsigaVonal {
             //feltöltés alulról felfelé
             for (int sor = sszam; sor > -1; sor--) {
                 if (matrix[sor][oszam] != -1) {
-                    sszam = sor + 1;
+                    sszam = sor;
                     break;
                 }
                 matrix[sor][oszam] = szam;
@@ -94,7 +97,80 @@ public class MatrixCsigaVonal {
             oszam++;
             
         }while(szam!=20);
-    }//matrixInit
+    }*/
+    
+    static void matrixBejar(int[][] matrix) {
+        int sor = 0, oszlop = 0, szam = 0;
+        
+        //do{
+            //balról jobbra
+            while(oszlop < matrix[sor].length){
+                
+                if(sor > 0){
+                    if(matrix[sor][oszlop+1] == -1){
+                        matrix[sor][oszlop]=szam;
+                        szam++;
+                        oszlop++;
+                    }
+                    else{
+                        break;
+                    }
+                }
+                else{//elsõ futásnál
+                    matrix[sor][oszlop]=szam;
+                    szam++;
+                    oszlop++;
+                }
+                
+            }
+            oszlop--;
+            sor++;
+            //fentrõl lefelé
+            while(sor < matrix.length){
+                
+                if(oszlop != matrix[sor].length-1){
+                    
+                    if(matrix[sor+1][oszlop] == -1){
+                        
+                        matrix[sor][oszlop]=szam;
+                        szam++;
+                        sor++;
+                        
+                    }
+                    else{
+                        break;
+                    }
+                }
+                else {//elsõ futásnál
+                    matrix[sor][oszlop]=szam;
+                    szam++;
+                    sor++;
+                }
+                
+            }
+            sor--;
+            oszlop--;
+            //jobbról balra
+            while(oszlop > -1){
+                matrix[sor][oszlop]= szam;
+                szam++;
+                oszlop--;
+            }
+            sor--;
+            oszlop++;
+            System.out.println(sor+" / "+oszlop);
+            tombKiir(matrix);
+            //lentrõl felfelé
+            while(sor >-1){
+                    
+                    System.out.println(sor+" / "+oszlop);
+                    matrix[sor][oszlop]=szam;
+                    szam++;
+                    sor--;
+            }
+            
+        //}while(szam != (matrix.length*matrix[0].length)-1);
+    }
 
     public static void main(String[] args) {
 
