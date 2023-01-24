@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package matrixcsigavonal;
 
 /**
  *
- * @author szeke
+ * @author Székely Balázs
+ * 
  */
 public class MatrixCsigaVonal {
 
-    /**
-     * @param args the command line arguments
-     */
     static void tombKiir(int[] tomb) {
         tombKiir(tomb, tomb.length);
     }//tombKiir
@@ -43,100 +38,36 @@ public class MatrixCsigaVonal {
         }
         return matrix;
     }//matrixInit
-
-    /*static void matrixBejar(int[][] matrix) {
-        int szam = 0, sszam = 0, oszam = 0;
-
-        do{
-            //feltöltés balról jobbra
-            for (int oszlop = oszam; oszlop < matrix[sszam].length; oszlop++) {
-                if (matrix[sszam][oszlop] != -1) {
-                    oszam = oszlop;
-                    break;
-                }
-                matrix[sszam][oszlop] = szam;
-                szam++;
-                oszam = oszlop;
-            }
-            sszam++;
-            
-
-            //feltöltés fentrõl lefelé
-            for (int sor = sszam; sor < matrix.length; sor++) {
-                if(matrix[sor][oszam]!=-1){
-                    sszam = sor;
-                    break;
-                }
-                matrix[sor][oszam] = szam;
-                szam++;
-                sszam = sor;
-            }
-            oszam--;
-            System.out.println(sszam+" és "+oszam);//VALAHOL ITT VAN A HIBA
-            tombKiir(matrix);
-            //feltöltés jobbról balra
-            for (int oszlop = oszam; oszlop > -1; oszlop--) {
-                if(matrix[sszam][oszlop]!=-1){
-                    oszam=oszlop;
-                    break;
-                }
-                matrix[sszam][oszlop] = szam;
-                szam++;
-                oszam=oszlop;
-            }
-            sszam--;
-            
-            //feltöltés alulról felfelé
-            for (int sor = sszam; sor > -1; sor--) {
-                if (matrix[sor][oszam] != -1) {
-                    sszam = sor;
-                    break;
-                }
-                matrix[sor][oszam] = szam;
-                szam++;
-            }
-            oszam++;
-            
-        }while(szam!=20);
-    }*/
     
     static void matrixBejar(int[][] matrix) {
         int sor = 0, oszlop = 0, szam = 0;
         
-        //do{
-            //balról jobbra
+            //1. balról jobbra
             while(oszlop < matrix[sor].length){
-                
                 if(sor > 0){
                     if(matrix[sor][oszlop+1] == -1){
                         matrix[sor][oszlop]=szam;
                         szam++;
                         oszlop++;
                     }
-                    else{
-                        break;
-                    }
+                    else{ break; }
                 }
                 else{//elsõ futásnál
                     matrix[sor][oszlop]=szam;
                     szam++;
                     oszlop++;
-                }
-                
+                }   
             }
             oszlop--;
             sor++;
-            //fentrõl lefelé
+            
+            //1. fentrõl lefelé
             while(sor < matrix.length){
-                
                 if(oszlop != matrix[sor].length-1){
-                    
                     if(matrix[sor+1][oszlop] == -1){
-                        
                         matrix[sor][oszlop]=szam;
                         szam++;
                         sor++;
-                        
                     }
                     else{
                         matrix[sor][oszlop]=szam;
@@ -150,11 +81,11 @@ public class MatrixCsigaVonal {
                     szam++;
                     sor++;
                 }
-                
             }
             sor--;
             oszlop--;
-            //jobbról balra
+            
+            //1. jobbról balra
             while(oszlop > -1){
                 matrix[sor][oszlop]= szam;
                 szam++;
@@ -162,7 +93,8 @@ public class MatrixCsigaVonal {
             }
             sor--;
             oszlop++;
-            //lentrõl felfelé
+            
+            //1. lentrõl felfelé
             while(sor >-1){
                     if(matrix[sor-1][oszlop] == -1){
                         matrix[sor][oszlop]=szam;
@@ -179,8 +111,10 @@ public class MatrixCsigaVonal {
             sor++;
             oszlop++;
             
+            //n-dik körbefuttatás
             while(szam <= (matrix.length*matrix[sor].length)-1){
-                //2. balról jobbra
+                
+                //balról jobbra
                 while(oszlop < matrix[sor].length){
                     if (szam > (matrix.length*matrix[sor].length)-1) break;
                     
@@ -202,24 +136,19 @@ public class MatrixCsigaVonal {
                         szam++;
                         oszlop++;
                     }
-
                 }
                 oszlop--;
                 sor++;
 
-
-                //2. fentrõl lefelé
+                //fentrõl lefelé
                 while(sor < matrix.length){
                     if (szam > (matrix.length*matrix[sor].length)-1) break;
                     
                     if(oszlop != matrix[sor].length-1){
-                        
                         if(matrix[sor+1][oszlop] == -1){
-
                             matrix[sor][oszlop]=szam;
                             szam++;
                             sor++;
-
                         }
                         else{
                             matrix[sor][oszlop]=szam;
@@ -228,8 +157,7 @@ public class MatrixCsigaVonal {
                             break;
                         }
                     }
-                    else {//elsõ futásnál
-                        
+                    else {//elsõ futásnál   
                         matrix[sor][oszlop]=szam;
                         szam++;
                         oszlop++;
@@ -238,10 +166,8 @@ public class MatrixCsigaVonal {
 
                 }
                 oszlop=oszlop-2;
-                
-                //sor--;
 
-                //2. jobbról balra
+                //jobbról balra
                 while(oszlop > -1){
                     if (szam > (matrix.length*matrix[sor].length)-1) break;
                     
@@ -302,6 +228,15 @@ public class MatrixCsigaVonal {
         matrixBejar(matrix2);
         System.out.println("Feltöltés után:");
         tombKiir(matrix2);
+        
+        int[][] matrix3 = matrixInit(5, 7);
+        System.out.println("Feltöltés elõtt:");
+        tombKiir(matrix3);
+        
+        
+        matrixBejar(matrix3);
+        System.out.println("Feltöltés után:");
+        tombKiir(matrix3);
     }
 
 }
